@@ -1,0 +1,61 @@
+<ng-template #loading>
+  <!-- <div class="alert alert-info d-flex justify-content-center">
+    <img src="assets/loader.svg" alt="" class="svg-icon" />
+  </div> -->
+  <shared-loading-spinner ></shared-loading-spinner>
+</ng-template>
+
+
+<div *ngIf="country; else loading">
+  <div class="row">
+    <div class="col-12">
+      <h2>
+        <strong> {{ country.name.common }}</strong>
+      </h2>
+    </div>
+    <div class="col-12"></div>
+  </div>
+  <div class="row">
+    <div class="col-4">
+      <img
+        [src]="country.flags.svg"
+        alt="country.name.common"
+        class="img-thumbnail"
+      />
+    </div>
+    <div class="col">
+      <ul class="list-group">
+        <li class="list-group-item">
+          <span><strong>Codigo: </strong> {{ country.cca3 }}</span>
+        </li>
+        <li class="list-group-item">
+          <span><strong>Capital: </strong> {{ country.capital }}</span>
+        </li>
+        <li class="list-group-item">
+          <span><strong>Region: </strong> {{ country.subregion }}</span>
+        </li>
+        <li class="list-group-item">
+          <span><strong>Lenguajes: </strong> </span>
+          <span
+            *ngFor="let item of country.languages | keyvalue; let last = last"
+          >
+            {{ item.value }}{{ !last ? "," : "" }}
+          </span>
+        </li>
+        <li class="list-group-item">
+          <strong>Poblacion: </strong> {{ country.population | number }}
+        </li>
+      </ul>
+    </div>
+    <div class="row mt-2">
+      <div class="col">
+        <h2>Traducciones</h2>
+        <div class="d-flex flex-wrap">
+          <span class="badge bg-primary m-1" *ngFor="let translation of country.translations | keyvalue">
+            {{ translation.value['common'] }}&nbsp;
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
